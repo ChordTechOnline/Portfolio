@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChordTech.online</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
+  <!-- Start:: Google translate -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <center>
+    <div id="google_translate_element"></div><br />
+    Country:&nbsp;<span id="country"></span>
+  </center>
+  <script>
+    function hc(dc) {
+      lang = Cookies.get('language');
+      if (lang != dc) {
+        window.location.hash = 'googtrans(en|' + dc + ')';
+        location.reload();
+        Cookies.set('language', dc);
+      }
+    }
+    $.ajax({
+      type: "GET",
+      url: "https://geolocation-db.com/jsonp/",
+      jsonpCallback: "callback",
+      dataType: "jsonp",
+      success: function (location) {
+        $('#country').html(location.country_code);
+        $('#country').html(location.country_code);
+        co = location.country_code;
+        co = co.toLowerCase();
+        hc(co); // Replace here
+      }
+    });
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+    }
+  </script>
+  <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <!-- End:: Google translate -->
+
   <header>
     <h1>ChordTech.online</h1>
     <p>Empowering Your Digital Journey</p>
@@ -23,11 +62,19 @@
   <section id="services">
     <h2>Services</h2>
     <ul>
-      <li><strong>Web Development</strong>: Transform your online presence with beautifully designed and fully functional websites that capture your brand identity and engage your audience.</li>
-      <li><strong>E-commerce Solutions</strong>: Unlock the full potential of online retail with our expertly crafted e-commerce solutions, designed to drive sales and enhance customer experiences.</li>
-      <li><strong>Custom Software Development</strong>: Empower your business with bespoke software solutions that streamline your operations, boost efficiency, and fuel growth.</li>
-      <li><strong>Serverless Development Consulting</strong>: Embrace the future of cloud computing with our serverless development consulting services, helping you leverage scalable and cost-effective architectures for your applications.</li>
-      <li><strong>Digital Marketing</strong>: Amplify your online reach and drive meaningful engagement with our digital marketing strategies, tailored to your unique goals and objectives.</li>
+      <li><strong>Web Development</strong>: Transform your online presence with beautifully designed and fully
+        functional websites that capture your brand identity and engage your audience.</li>
+      <li><strong>E-commerce Solutions</strong>: Unlock the full potential of online retail with our expertly crafted
+        e-commerce solutions, designed to drive sales and enhance customer experiences.</li>
+      <li><strong>Custom Software Development</strong>: Empower your business with bespoke software solutions that
+        streamline your operations, boost efficiency, and fuel growth.</li>
+      <li><strong>Serverless Development Consulting</strong>: Embrace the future of cloud computing with our
+        serverless
+        development consulting services, helping you leverage scalable and cost-effective architectures for your
+        applications.</li>
+      <li><strong>Digital Marketing</strong>: Amplify your online reach and drive meaningful engagement with our
+        digital
+        marketing strategies, tailored to your unique goals and objectives.</li>
     </ul>
   </section>
 
@@ -64,4 +111,5 @@
     </nav>
   </footer>
 </body>
+
 </html>
